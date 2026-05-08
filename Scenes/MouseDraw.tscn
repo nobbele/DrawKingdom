@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cu3d1jy5bxgfl"]
+
+[ext_resource type="Script" uid="uid://csv0lrv6sw8ep" path="res://Scripts/MouseDraw.cs" id="1_ficxw"]
+
+[node name="MouseDraw" type="Node2D" unique_id=828360322 node_paths=PackedStringArray("line")]
+script = ExtResource("1_ficxw")
+line = NodePath("Line2D")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=279706445]

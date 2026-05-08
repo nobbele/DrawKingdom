@@ -1,0 +1,4 @@
+{
+    "godotTools.editorPath.godot4": "/home/nobbele/.nix-profile/bin/godot-mono",
+    "sarif-viewer.connectToGithubCodeScanning": "off"
+}

@@ -1,6 +1,29 @@
 [gd_scene format=3 uid="uid://dptlij8g8k27k"]
 
 [ext_resource type="Script" uid="uid://dixh17pbuxpvo" path="res://Scripts/Game.cs" id="1_iukft"]
+[ext_resource type="Resource" uid="uid://48k1ju4b5wl6" path="res://Resources/Wood.tres" id="2_b2bpf"]
+[ext_resource type="PackedScene" uid="uid://qkx8jy685lrk" path="res://Scenes/Terrain.tscn" id="2_gl6un"]
+[ext_resource type="Resource" uid="uid://n0e58t847m2s" path="res://Resources/Food.tres" id="3_7lihs"]
+[ext_resource type="PackedScene" uid="uid://cg1n466nboqvd" path="res://Scenes/kingdom.tscn" id="3_j5yw3"]
+[ext_resource type="PackedScene" uid="uid://dn2vcfqqtwy8x" path="res://Scenes/Town.tscn" id="4_kldst"]
 
 [node name="Game" type="Node2D" unique_id=341478561]
 script = ExtResource("1_iukft")
+GameResources = Array[Object]([ExtResource("2_b2bpf"), ExtResource("3_7lihs")])
+
+[node name="Camera" type="Camera2D" parent="." unique_id=685863740]
+position = Vector2(930, 475)
+zoom = Vector2(0.75, 0.75)
+
+[node name="Terrain" parent="." unique_id=1606541455 instance=ExtResource("2_gl6un")]
+z_index = -2
+
+[node name="MainKingdom" parent="." unique_id=743261515 groups=["Building"] instance=ExtResource("3_j5yw3")]
+z_index = 1
+position = Vector2(928, 504)
+
+[node name="Town" parent="." unique_id=1994377391 groups=["Building", "Towns"] instance=ExtResource("4_kldst")]
+z_index = 1
+position = Vector2(626, 270)
+BaseProduction = 1
+BaseProductionRate = 2.5

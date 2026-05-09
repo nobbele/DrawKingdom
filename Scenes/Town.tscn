@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dn2vcfqqtwy8x"]
+
+[ext_resource type="Script" uid="uid://2xlp5gjoamrc" path="res://Scripts/Town.cs" id="1_hb5n5"]
+[ext_resource type="Texture2D" uid="uid://8ayywt0uoqrh" path="res://Assets/Kingdom.png" id="2_x6bik"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hb5n5"]
+size = Vector2(131, 124)
+
+[node name="Town" type="Area2D" unique_id=743261515]
+script = ExtResource("1_hb5n5")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1279068144]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_x6bik")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=1817918500]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_hb5n5")

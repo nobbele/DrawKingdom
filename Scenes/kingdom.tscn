@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cg1n466nboqvd"]
+
+[ext_resource type="Script" uid="uid://bipxafl33lxeg" path="res://Scripts/Kingdom.cs" id="1_7yor6"]
+[ext_resource type="Texture2D" uid="uid://8ayywt0uoqrh" path="res://Assets/Kingdom.png" id="2_qtqo3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j5yw3"]
+size = Vector2(127, 132)
+
+[node name="Kingdom" type="Area2D" unique_id=743261515]
+script = ExtResource("1_7yor6")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1279068144]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_qtqo3")
+
+[node name="CollisionShape" type="CollisionShape2D" parent="." unique_id=1817918500]
+position = Vector2(-0.5, 4)
+shape = SubResource("RectangleShape2D_j5yw3")

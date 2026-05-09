@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="GameResource" format=3 uid="uid://n0e58t847m2s"]
+
+[ext_resource type="Script" uid="uid://57pckgdvlw7j" path="res://Resources/GameResource.cs" id="1_uplms"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_uplms"]
+size = Vector2(64, 64)
+
+[resource]
+script = ExtResource("1_uplms")
+Texture = SubResource("PlaceholderTexture2D_uplms")
+Name = "Food"
+SellingPrice = 25
+Importance = 1.0
+metadata/_custom_type_script = "uid://57pckgdvlw7j"

@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bfx3a1lqwleu8"]
+
+[ext_resource type="Script" uid="uid://cmjccuruq1vdn" path="res://Scripts/Road.cs" id="1_xpn0r"]
+[ext_resource type="Texture2D" uid="uid://si520aj7ylvi" path="res://Assets/RoadSegments/Segment1.tres" id="2_jioyu"]
+[ext_resource type="Texture2D" uid="uid://8mudt2ykhsai" path="res://Assets/RoadSegments/Segment2.tres" id="3_u5guk"]
+[ext_resource type="Texture2D" uid="uid://b6wlv50n7x1d" path="res://Assets/RoadSegments/Segment3.tres" id="4_i18f2"]
+[ext_resource type="Texture2D" uid="uid://dkuvbkodr45ae" path="res://Assets/RoadSegments/Segment4.tres" id="5_r83vl"]
+[ext_resource type="Texture2D" uid="uid://b546ltyicnlkv" path="res://Assets/RoadSegments/Segment5.tres" id="6_ph2v2"]
+[ext_resource type="Texture2D" uid="uid://cn1lcgqjw07rb" path="res://Assets/RoadSegments/Segment6.tres" id="7_xbiki"]
+[ext_resource type="Texture2D" uid="uid://brl8qj8w2t14v" path="res://Assets/RoadSegments/Segment7.tres" id="8_3qop5"]
+[ext_resource type="Texture2D" uid="uid://bupgycnoyoqc1" path="res://Assets/RoadSegments/Segment8.tres" id="9_iqv4d"]
+[ext_resource type="Texture2D" uid="uid://blo8ipck0ccba" path="res://Assets/RoadSegments/Segment9.tres" id="10_6tr8g"]
+
+[node name="Road" type="Area2D" unique_id=128112385]
+z_index = -1
+script = ExtResource("1_xpn0r")
+_segmentTextures = Array[Texture2D]([ExtResource("2_jioyu"), ExtResource("3_u5guk"), ExtResource("4_i18f2"), ExtResource("5_r83vl"), ExtResource("6_ph2v2"), ExtResource("7_xbiki"), ExtResource("8_3qop5"), ExtResource("9_iqv4d"), ExtResource("10_6tr8g")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1900253672]

@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://qkx8jy685lrk"]
 
 [ext_resource type="Texture2D" uid="uid://darutiqgv0k5t" path="res://Assets/grass.png" id="1_c86l1"]
-[ext_resource type="Texture2D" uid="uid://8ayywt0uoqrh" path="res://Assets/Kingdom.png" id="2_7x3kn"]
 [ext_resource type="Texture2D" uid="uid://yes3b2ci7u43" path="res://Assets/TreeC1-2.png" id="3_xdnbq"]
 [ext_resource type="Texture2D" uid="uid://xtas5cimywm" path="res://Assets/TreeC1-1.png" id="4_yaj1f"]
 [ext_resource type="Texture2D" uid="uid://k8s2e5xtqdbu" path="res://Assets/Pool1.png" id="5_i3mjt"]
@@ -15,11 +14,6 @@ scale = Vector2(12.680511, 8.407407)
 texture = ExtResource("1_c86l1")
 
 [node name="Foreground" type="Node2D" parent="." unique_id=2139609352]
-
-[node name="Kingdom" type="Sprite2D" parent="Foreground" unique_id=1232437201]
-position = Vector2(928, 504)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_7x3kn")
 
 [node name="Trees1" type="Sprite2D" parent="Foreground" unique_id=1556239928]
 position = Vector2(1064, 520)

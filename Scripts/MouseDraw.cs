@@ -12,6 +12,11 @@ public partial class MouseDraw : Node2D
         {
             AddEdge(mousePosition);
         }
+        
+        if (Input.IsActionJustPressed("right_click"))
+        {
+            PopEdge();
+        }
 
         if (line.Points.Length > 0)
         {
@@ -27,5 +32,15 @@ public partial class MouseDraw : Node2D
         }
 
         line.AddPoint(pos);
+    }
+
+    private void PopEdge()
+    {
+        if (line.Points.Length == 2)
+        {
+            line.RemovePoint(0);
+        }
+        
+        line.RemovePoint(line.Points.Length - 1);
     }
 }

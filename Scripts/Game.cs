@@ -2,26 +2,55 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Godot.Collections;
-using Array = Godot.Collections.Array;
 
 public partial class Game : Node2D
 {
 	public static Game Instance { get; private set; }
 
-	[Signal]
-	public delegate void OnTickEventHandler();
+    [Export] public int Gold = 100;
+    [Export] public int Population = 100;
+    [Export] public int Happiness = 70;
+    [Export] public int Day = 1;
+    [Export] public int DragonVisitDay = 7;
+    [Export] public int RequiredGold = 500;
+    [Export] public bool IsGameOver = false;
+    
+    [Signal]
+    public delegate void OnTickEventHandler();
+    
+    [Export] public GameResource[] GameResources;
 	
-	[Export] public int Gold = 100;
+    private PackedScene _mouseDraw = ResourceLoader.Load<PackedScene>("uid://cu3d1jy5bxgfl");
+    private PackedScene _road = ResourceLoader.Load<PackedScene>("uid://bfx3a1lqwleu8");
 
-	[Export] public GameResource[] GameResources;
-	
-	private PackedScene _mouseDraw = ResourceLoader.Load<PackedScene>("uid://cu3d1jy5bxgfl");
-	private PackedScene _road = ResourceLoader.Load<PackedScene>("uid://bfx3a1lqwleu8");
+    private DrawModeState _activeDraw;
 
-	private DrawModeState _activeDraw;
+    private Timer _tickTimer;
 
-	private Timer _tickTimer;
+    public void EndDay()
+    {
+        // int starvingPeople = Population - Food;
+        // ConsumeFood();
+        // Starvation(starvingPeople);
+
+        GameOverCheck();
+    }
+
+    public void StartDay()
+    {
+        Day += 1;
+        DragonVisitDayCheck();
+        TaxIncome();
+        // RandomEvent();
+    }
+
+    public void GameOverCheck()
+    {
+        if (Population < 1)
+        {
+            IsGameOver = true;
+        }
+    }
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -49,7 +78,7 @@ public partial class Game : Node2D
 
 		OnTick += _Tick;
 	}
-
+	
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
@@ -78,7 +107,7 @@ public partial class Game : Node2D
 
 		foreach (var building in buildings)
 		{
-			var missingProductionResult = new System.Collections.Generic.Dictionary<ResourceKind, float>();
+			var missingProductionResult = new Dictionary<ResourceKind, float>();
 			foreach (var resourceKind in building.Consumption.Keys)
 			{
 				production.TryAdd(resourceKind, 0);
@@ -116,6 +145,76 @@ public partial class Game : Node2D
 
 		// TODO display missingProductions?
 	}
+	
+    // private void ConsumeFood()
+    // {
+    //     Food = Math.Max(Food - Population, 0);
+    // }
+
+    private void Starvation(int starvingPeople)
+    {
+        int starvationChance = 15;
+
+        int deaths = 0;
+        for (int i = 0; i < starvingPeople; i++)
+        {
+            bool died = Random.Shared.Next(100) < starvationChance;
+            if (died)
+            {
+                deaths += 1;
+            }
+        }
+
+        Population -= deaths;
+    }
+
+    private void TaxIncome()
+    {
+        var taxRate = Happiness * 0.01;
+        var taxedAmount = (int)Math.Floor(Population * taxRate);
+        Gold += taxedAmount;
+    }
+
+    private void DragonVisitDayCheck()
+    {
+	    if (Day != DragonVisitDay) return;
+	    
+	    if (Gold < RequiredGold)
+	    {
+		    IsGameOver = true;
+		    return;
+	    }
+
+	    Gold -= RequiredGold;
+	    DragonVisitDay += 7;
+	    RequiredGold *= 2;
+    }
+
+    private RandomEvent SelectRandomEvent()
+    {
+        Dictionary<RandomEvent, int> weights = new()
+        {
+            { RandomEvent.Trade, 4500 },
+            { RandomEvent.FindFood, 3000 },
+            { RandomEvent.Disease, 600 + Population * 3 },
+            { RandomEvent.Unhappiness, Happiness < 60 ? 1000 : 0 },
+            { RandomEvent.Plunder, 500 },
+            { RandomEvent.TaxComplains, 2000 },
+        };
+
+        var roll = Random.Shared.Next(weights.Values.Sum());
+
+        var cumulative = roll;
+        foreach (var (k, v) in weights)
+        {
+            if (cumulative < v)
+                return k;
+				
+            cumulative += v;
+        }
+
+        return weights.Keys.Last();
+    }
 
 	public GameResource LookupGameResource(ResourceKind kind)
 		=> GameResources.FirstOrDefault(r => r.Kind == kind);
@@ -203,5 +302,15 @@ public partial class Game : Node2D
 		{
 			GD.Print(conn);
 		}
+	}
+	
+	private enum RandomEvent
+	{
+		Trade,
+		FindFood,
+		Disease,
+		Unhappiness,
+		Plunder,
+		TaxComplains,
 	}
 }

@@ -10,5 +10,5 @@ script = ExtResource("1_jmmml")
 Texture = SubResource("PlaceholderTexture2D_jmmml")
 Name = "Wood"
 Kind = 1
-SellingPrice = 20
+SellingPrice = 3
 metadata/_custom_type_script = "uid://57pckgdvlw7j"

@@ -9,6 +9,6 @@ size = Vector2(64, 64)
 script = ExtResource("1_uplms")
 Texture = SubResource("PlaceholderTexture2D_uplms")
 Name = "Food"
-SellingPrice = 25
+SellingPrice = 4
 Importance = 1.0
 metadata/_custom_type_script = "uid://57pckgdvlw7j"

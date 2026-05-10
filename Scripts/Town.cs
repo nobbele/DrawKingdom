@@ -20,7 +20,7 @@ public partial class Town : Area2D, IBuilding, IRoadConnectionPoint
     
     public IReadOnlyDictionary<ResourceKind, float> Consumption => new Godot.Collections.Dictionary<ResourceKind, float>
     {
-        { ResourceKind.Food, 2.0f }
+        { ResourceKind.Food, 20.0f }
     };
 
     public void OnMissingProductionResult(Dictionary<ResourceKind, float> result)

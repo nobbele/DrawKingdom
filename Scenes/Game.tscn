@@ -7,6 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://cg1n466nboqvd" path="res://Scenes/kingdom.tscn" id="3_j5yw3"]
 [ext_resource type="PackedScene" uid="uid://dn2vcfqqtwy8x" path="res://Scenes/Town.tscn" id="4_kldst"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_7lihs"]
+font_size = 36
+font_color = Color(0, 0, 0, 1)
+
 [node name="Game" type="Node2D" unique_id=341478561]
 script = ExtResource("1_iukft")
 GameResources = Array[Object]([ExtResource("2_b2bpf"), ExtResource("3_7lihs")])
@@ -26,4 +30,44 @@ position = Vector2(928, 504)
 z_index = 1
 position = Vector2(626, 270)
 BaseProduction = 1
-BaseProductionRate = 2.5
+BaseProductionRate = 25.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1606047669]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1660115965]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control" unique_id=842713692]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -129.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Gold" type="Control" parent="CanvasLayer/Control/VBoxContainer" unique_id=196771862]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/Gold" unique_id=1942178862]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Gold: {0}"
+label_settings = SubResource("LabelSettings_7lihs")
+
+[node name="Population" type="Control" parent="CanvasLayer/Control/VBoxContainer" unique_id=1925725670]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/VBoxContainer/Population" unique_id=1618077126]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Population: {0}"
+label_settings = SubResource("LabelSettings_7lihs")

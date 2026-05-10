@@ -84,6 +84,9 @@ public partial class Game : Node2D
 	{
 		if (Input.IsActionJustPressed("draw_mode"))
 			EnterDrawMode();
+
+		GetNode<Label>("CanvasLayer/Control/VBoxContainer/Gold/Label").Text = $"Gold: {Gold}";
+		GetNode<Label>("CanvasLayer/Control/VBoxContainer/Population/Label").Text = $"Population: {Population}";
 	}
 
 	private void _Tick()
@@ -144,6 +147,8 @@ public partial class Game : Node2D
 		Gold += Mathf.RoundToInt(produceSale);
 
 		// TODO display missingProductions?
+
+		Population = GetTree().GetNodesInGroup("Building").OfType<Kingdom>().Sum(kingdom => kingdom.Population);
 	}
 	
     // private void ConsumeFood()
@@ -153,12 +158,12 @@ public partial class Game : Node2D
 
     private void Starvation(int starvingPeople)
     {
-        int starvationChance = 15;
+        const int starvationChance = 15;
 
-        int deaths = 0;
-        for (int i = 0; i < starvingPeople; i++)
+        var deaths = 0;
+        for (var i = 0; i < starvingPeople; i++)
         {
-            bool died = Random.Shared.Next(100) < starvationChance;
+            var died = Random.Shared.Next(100) < starvationChance;
             if (died)
             {
                 deaths += 1;
@@ -201,7 +206,7 @@ public partial class Game : Node2D
             { RandomEvent.Plunder, 500 },
             { RandomEvent.TaxComplains, 2000 },
         };
-
+        
         var roll = Random.Shared.Next(weights.Values.Sum());
 
         var cumulative = roll;
@@ -216,7 +221,7 @@ public partial class Game : Node2D
         return weights.Keys.Last();
     }
 
-	public GameResource LookupGameResource(ResourceKind kind)
+	public GameResource LookupGameResource(ResourceKind kind) 
 		=> GameResources.FirstOrDefault(r => r.Kind == kind);
 
 	private bool IsDrawTarget(Vector2 pos)

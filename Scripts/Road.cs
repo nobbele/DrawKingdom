@@ -44,9 +44,9 @@ public partial class Road : Area2D, IRoadConnectionPoint
             child.QueueFree();
         }
 
-        var scale = 0.4f;
+        const float scale = 0.4f;
 
-        var segmentLength = 112 * scale;
+        const float segmentLength = 112 * scale;
         var segmentCount = Mathf.FloorToInt(_length / segmentLength);
         for (var i = 0; i < segmentCount; i++)
         {
